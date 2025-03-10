@@ -15,10 +15,10 @@ server.tool(
   'generic_eth_json_rpc',
   `Parameters:
 - method (string, REQUIRED): The JSON-RPC method to execute.
-- params (array, REQUIRED): The parameters for the JSON-RPC method. `,
+- params (array, REQUIRED): The parameters for the JSON-RPC method.`,
   {
     method: z.string(),
-    params: z.array(z.any())
+    params: z.array(z.string())
   },
   async ({ method, params }) => {
     try {

@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/server/index.js"
+    "start": "node dist/server/index.js",
+    "inspector": "npx @modelcontextprotocol/inspector node dist/server/index.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.6.1",
