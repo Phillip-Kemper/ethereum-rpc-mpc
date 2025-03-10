@@ -8,7 +8,7 @@ import { RPC_URL } from "./constants.js";
  * @returns {Promise<any>} - The result of the RPC call
  * @throws {Error} - If the RPC call fails or returns an error
  */
-async function callRPC(method: string, params = []) {
+export async function callRPC(method: string, params: any[]) {
     if (!method) {
       throw new Error('RPC method is required');
     }
