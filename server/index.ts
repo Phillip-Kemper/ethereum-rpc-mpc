@@ -1,14 +1,15 @@
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from 'zod';
+import { RPC_URL } from './constants.js';  // Import the RPC_URL
 
-// Create an MCP server
 const server = new McpServer({
-  name: "Demo",
+  name: "ethereum-rpc-mpc",
   version: "1.0.0"
 });
 
-// Add an addition tool
+console.log(`Using Ethereum RPC URL: ${RPC_URL}`);
+
 server.tool("add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
@@ -16,7 +17,6 @@ server.tool("add",
   })
 );
 
-// Add a dynamic greeting resource
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -28,12 +28,5 @@ server.resource(
   })
 );
 
-// Wrap the code that uses await in an async function
-async function main() {
-  // Start receiving messages on stdin and sending messages on stdout
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-}
-
-// Call the async function
-main().catch(console.error);
+const transport = new StdioServerTransport();
+await server.connect(transport);
