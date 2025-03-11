@@ -1,5 +1,5 @@
 import axios from "axios";
-import { RPC_URL } from "./constants.js";
+import { RPC_URL } from "./index.js";
 
 /**
  * Makes a JSON-RPC call to the Ethereum endpoint
@@ -37,4 +37,29 @@ export async function callRPC(method: string, params: any[]) {
       
       throw error;
     }
+}
+
+export async function validateRpcUrl(url: string) {
+  if (!url) {
+    console.error("Error: No RPC URL provided. Please provide an RPC URL as an argument.");
+    process.exit(1);
   }
+  
+  console.log(`Validating Ethereum RPC URL: ${url}`);
+  
+  try {
+    // Test the connection with a simple eth_blockNumber call
+    const blockNumber = await callRPC("eth_blockNumber", []);
+    console.log(`✅ RPC endpoint is working. Current block number: ${blockNumber}`);
+    return true;
+  } catch (error: unknown) {
+    // Properly handle the error based on its type
+    const errorMessage = error instanceof Error 
+      ? error.message 
+      : 'Unknown error occurred';
+    
+    console.error(`❌ Failed to connect to RPC endpoint: ${errorMessage}`);
+    console.error("Please check that the URL is correct and the endpoint is accessible.");
+    process.exit(1);
+  }
+}

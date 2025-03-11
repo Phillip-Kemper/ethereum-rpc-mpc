@@ -1,15 +1,17 @@
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from 'zod';
-import { RPC_URL } from './constants.js';  // Import the RPC_URL
-import { callRPC } from "./utils.js";
+import { callRPC, validateRpcUrl } from "./utils.js";
+
+export const RPC_URL = process.argv[2];
+const CHAIN_NAME = process.argv[3];
+
+await validateRpcUrl(RPC_URL);
 
 const server = new McpServer({
   name: "ethereum-rpc-mpc",
   version: "1.0.0"
 });
-
-console.log(`Using Ethereum RPC URL: ${RPC_URL}`);
 
 server.tool(
   'generic_eth_json_rpc',
@@ -40,6 +42,19 @@ server.tool(
   }
 );
 
+// Add a dynamic greeting resource
+server.resource(
+  "rpc_info",
+  "text://rpc_info",
+  async (uri: URL, extra: any) => {
+    return {
+      contents: [{
+        uri: uri.href,
+        text: `Current RPC URL: ${RPC_URL} for ${CHAIN_NAME}`
+      }]
+    };
+  }
+);
 
 const transport = new StdioServerTransport();
 await server.connect(transport);
