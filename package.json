@@ -1,13 +1,14 @@
 {
-  "name": "server",
+  "name": "ethereum-rpc-mpc",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server/index.js",
   "license": "MIT",
   "type": "module",
   "scripts": {
     "build": "tsc",
     "start": "node dist/server/index.js",
-    "inspector": "yarn run build && npx @modelcontextprotocol/inspector node dist/server/index.js"
+    "inspector": "yarn run build && npx @modelcontextprotocol/inspector node dist/server/index.js",
+    "dev": "yarn run build && node dist/server/index.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.6.1",
