@@ -42,7 +42,6 @@ server.tool(
   }
 );
 
-// Add a dynamic greeting resource
 server.resource(
   "rpc_info",
   "text://rpc_info",
