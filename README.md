@@ -31,6 +31,9 @@ You can start the server by providing an Ethereum RPC URL and an optional chain 
 
 ```bash
 yarn start [RPC_URL] [CHAIN_NAME]
+
+# Using npx (without installing)
+npx -y ethereum-rpc-mpc [RPC_URL] [CHAIN_NAME]
 ```
 
 If no RPC URL is provided, it will default to "https://eth.llamarpc.com".
