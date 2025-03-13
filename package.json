@@ -7,6 +7,9 @@
   "bin": {
     "ethereum-rpc-mpc": "./dist/server/index.js"
   },
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
     "prepublishOnly": "yarn run build",
     "build": "tsc",

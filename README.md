@@ -57,6 +57,8 @@ To use this MPC server with Cursor:
 3. Add a new MCP server with the following configuration:
    - Name: Ethereum RPC
    - Type: Command
+   - Command: `npx -y ethereum-rpc-mpc https://eth.llamarpc.com Ethereum`
+   or
    - Command: `node /path/to/ethereum-rpc-mpc/dist/server/index.js https://eth.llamarpc.com Ethereum`
 
 ## Examples
