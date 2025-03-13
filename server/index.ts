@@ -17,7 +17,7 @@ const CHAIN_NAME = process.argv[3] || "Ethereum";
 await validateRpcUrl(RPC_URL);
 
 // Get and display the chain ID during initialization
-let chainId = 0;
+let chainId = 1;
 try {
   chainId = await getChainId();
   console.log(`Connected to network with Chain ID: ${chainId}`);
