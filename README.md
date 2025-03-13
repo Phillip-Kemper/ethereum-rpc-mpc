@@ -1,5 +1,8 @@
 # Ethereum RPC MPC Server
 
+[![npm version](https://img.shields.io/npm/v/ethereum-rpc-mpc.svg)](https://www.npmjs.com/package/ethereum-rpc-mpc)
+[![npm downloads](https://img.shields.io/npm/dm/ethereum-rpc-mpc.svg)](https://www.npmjs.com/package/ethereum-rpc-mpc)
+
 A TypeScript MCP server that leverages the MCP SDK to support all Ethereum JSON-RPC calls, enabling AI models to interact with blockchain data.
 
 ## Overview
