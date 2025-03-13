@@ -28,6 +28,20 @@ yarn inspector
 
 ## Usage
 
+### Using with Cursor
+
+To use this MPC server with Cursor:
+
+1. In Cursor, go to Settings > Cursor Settings > MCP
+2. Add a new MCP server with the following configuration:
+   - Name: Ethereum RPC
+   - Type: Command
+   - Command: `npx -y ethereum-rpc-mpc https://eth.llamarpc.com Ethereum`
+   or
+   - Command: `node /path/to/ethereum-rpc-mpc/dist/server/index.js https://eth.llamarpc.com Ethereum`
+
+<img width="938" alt="Screenshot 2025-03-13 at 19 41 56" src="https://github.com/user-attachments/assets/f9e09d44-ea43-4ef2-9950-88300f6f9667" />
+
 ### Starting the Server
 
 You can start the server by providing an Ethereum RPC URL and an optional chain name:
@@ -50,19 +64,6 @@ yarn start https://eth.llamarpc.com Ethereum
 # Connect to Zircuit
 yarn start https://mainnet.zircuit.com Zircuit
 ```
-
-### Using with Cursor
-
-To use this MPC server with Cursor:
-
-1. Start the server in a terminal window
-2. In Cursor, go to Settings > Cursor Settings > MCP
-3. Add a new MCP server with the following configuration:
-   - Name: Ethereum RPC
-   - Type: Command
-   - Command: `npx -y ethereum-rpc-mpc https://eth.llamarpc.com Ethereum`
-   or
-   - Command: `node /path/to/ethereum-rpc-mpc/dist/server/index.js https://eth.llamarpc.com Ethereum`
 
 ## Examples
 
