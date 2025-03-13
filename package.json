@@ -1,6 +1,6 @@
 {
   "name": "ethereum-rpc-mpc",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "dist/server/index.js",
   "license": "MIT",
   "type": "module",
