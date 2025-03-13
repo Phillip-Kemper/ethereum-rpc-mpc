@@ -1,12 +1,26 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from 'zod';
-import { callRPC, validateRpcUrl } from "./utils.js";
+import { callRPC, validateRpcUrl, getChainId, isZircuitChain, addZircuitSLSRPCs } from "./utils.js";
 
-export const RPC_URL = process.argv[2];
+export let RPC_URL = process.argv[2];
+
+if (!RPC_URL) {
+  RPC_URL = "https://eth.llamarpc.com"
+}
+
 const CHAIN_NAME = process.argv[3];
 
 await validateRpcUrl(RPC_URL);
+
+// Get and display the chain ID during initialization
+let chainId = 0;
+try {
+  chainId = await getChainId();
+  console.log(`Connected to network with Chain ID: ${chainId}`);
+} catch (error) {
+  console.warn("Could not retrieve chain ID, but continuing with server initialization");
+}
 
 const server = new McpServer({
   name: "ethereum-rpc-mpc",
@@ -14,7 +28,7 @@ const server = new McpServer({
 });
 
 server.tool(
-  'generic_eth_json_rpc',
+  'eth_json_rpc_call',
   `Parameters:
 - method (string, REQUIRED): The JSON-RPC method to execute.
 - params (array, REQUIRED): The parameters for the JSON-RPC method.`,
@@ -54,6 +68,10 @@ server.resource(
     };
   }
 );
+
+if(isZircuitChain(chainId)) {
+  addZircuitSLSRPCs(server);
+}
 
 const transport = new StdioServerTransport();
 await server.connect(transport);
