@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from 'zod';
@@ -7,9 +9,10 @@ export let RPC_URL = process.argv[2];
 
 if (!RPC_URL) {
   RPC_URL = "https://eth.llamarpc.com"
+  console.log(`No RPC URL provided, using default: ${RPC_URL}`);
 }
 
-const CHAIN_NAME = process.argv[3];
+const CHAIN_NAME = process.argv[3] || "Ethereum";
 
 await validateRpcUrl(RPC_URL);
 

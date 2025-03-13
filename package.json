@@ -1,9 +1,12 @@
 {
   "name": "ethereum-rpc-mpc",
   "version": "1.0.1",
-  "main": "server/index.js",
+  "main": "dist/server/index.js",
   "license": "MIT",
   "type": "module",
+  "bin": {
+    "ethereum-rpc-mpc": "./dist/server/index.js"
+  },
   "scripts": {
     "build": "tsc",
     "start": "node dist/server/index.js",
