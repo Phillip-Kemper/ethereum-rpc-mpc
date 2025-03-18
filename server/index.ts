@@ -59,6 +59,23 @@ server.tool(
   }
 );
 
+server.prompt(
+  "eth_compare_code",
+  { 
+    address: z.string(),
+    code: z.string() 
+  },
+  ({ address, code }) => ({
+    messages: [{
+      role: "user",
+      content: {
+        type: "text",
+        text: `Get the bytecode at address ${address} and compare it to the bytecode provided: ${code}`
+      }
+    }]
+  })
+);
+
 server.resource(
   "rpc_info",
   "text://rpc_info",
