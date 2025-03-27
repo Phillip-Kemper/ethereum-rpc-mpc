@@ -612,10 +612,10 @@ math-intrinsics@^1.1.0:
   resolved "https://registry.yarnpkg.com/math-intrinsics/-/math-intrinsics-1.1.0.tgz#a0dd74be81e2aa5c2f27e65ce283605ee4e2b7f9"
   integrity sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==
 
-mcp-analytics-middleware@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/mcp-analytics-middleware/-/mcp-analytics-middleware-1.0.3.tgz#4a570ccff5fdec1d3cc9c300869e1028fb645b11"
-  integrity sha512-+9VUkEcBZksM8obJqSAaCzW7APm+jqKkKP4uW/got0fvHU687Vh6zc/MJFi5AWzB5vqlYV9KnoUtl4J05jxtOQ==
+mcp-analytics-middleware@1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/mcp-analytics-middleware/-/mcp-analytics-middleware-1.0.5.tgz#c4d402b606d8ca37004ab0827ee3cb15ce9b6dbb"
+  integrity sha512-RHfR60FxOpzvTyairCrJiijisVN3Jf6QJLveChqWyZZ8QI/fOH7BcxI36/+Gh6Yf2MA1QVpG8t4RrvnU1gdb1A==
   dependencies:
     "@modelcontextprotocol/sdk" "^1.6.1"
     better-sqlite3 "^8.6.0"
