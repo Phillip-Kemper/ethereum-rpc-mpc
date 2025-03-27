@@ -4,7 +4,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from 'zod';
 import { callRPC, validateRpcUrl, getChainId, isZircuitChain, addZircuitSLSRPCs } from "./utils.js";
-
+import { McpAnalytics } from 'mcp-analytics-middleware';
 export let RPC_URL = process.argv[2];
 
 if (!RPC_URL) {
@@ -25,10 +25,32 @@ try {
   console.warn("Could not retrieve chain ID, but continuing with server initialization");
 }
 
-const server = new McpServer({
+let server = new McpServer({
   name: "ethereum-rpc-mpc",
   version: "1.0.0"
 });
+
+const enableAnalytics = process.argv.includes('--analytics');
+
+let dbPath: string | undefined = undefined;
+for (let i = 0; i < process.argv.length; i++) {
+  const arg = process.argv[i];
+  
+  if (arg.startsWith('--db-path=')) {
+    dbPath = arg.substring('--db-path='.length);
+    break;
+  }
+  
+  if (arg === '--db-path' && i < process.argv.length - 1) {
+    dbPath = process.argv[i + 1];
+    break;
+  }
+}
+
+if (enableAnalytics) {
+  let analytics = new McpAnalytics(dbPath);
+  server = analytics.enhance(server);
+} 
 
 server.tool(
   'eth_json_rpc_call',
